@@ -1,0 +1,31 @@
+#ToDo
+↠ SETUP the compileCode.js file to compile the code.
+↠ Integrate the CMD into GrayByteStudio
+↠ SYNC the fileExplorer
+↠ ADD React Complex Tree
+
+
+ADD CODE compilation Capability:
+    STEP: 1 Compile the  .C  to .O file
+    STEP 2 .O file to .elf
+    STEP 3 .elf to .hex
+    STEP 4 show outout info to user
+    STEP 5 Send .hex to
+
+if compile 
+    |
+    | 
+    ⇓
+    chk if saved ----> DO compile process ----> #COMPILE_PROCESS
+    not saved
+    |
+    |
+    ⇓
+    save current file
+
+    #COMPILE_PROCESS
+        STEP 1. MAKE a FOLDER in "temp" dir of OS with name of file or root folder + uniqueID
+        STEP 2. MAKE a process to execute the AVRcommands
+    #FLASH_CODE_TO_ARDUINO_CHIP
+        STEP 1. START #COMPILE_PROCESS BUT ? if the temp folder path is alrady been setup i.e compilation is done before dont make new tmp folder JUST use old path of TEMP folder
+        STEP 2. MAKE a process for AVRdude and pass the sutaible parameters like (path to .HEX file, PORT NAME)
