@@ -13,7 +13,9 @@ function createWindow() {
     ...process.platform === "linux" ? { icon } : {},
     webPreferences: {
       preload: path.join(__dirname, "../preload/index.js"),
-      sandbox: false
+      sandbox: false,
+      nodeIntegration: true,
+      contextIsolation: true
     }
   });
   mainWindow.on("ready-to-show", () => {
@@ -31,6 +33,17 @@ function createWindow() {
 }
 electron.app.whenReady().then(() => {
   utils.electronApp.setAppUserModelId("com.electron");
+  electron.ipcMain.handle("open-folder-dialog", async () => {
+    const res = await electron.dialog.showOpenDialog({
+      properties: ["openDirectory"]
+    });
+    if (res.canceled) {
+      return null;
+    } else {
+      console.warn(res.filePaths[0]);
+      return res.filePaths[0];
+    }
+  });
   electron.app.on("browser-window-created", (_, window) => {
     utils.optimizer.watchWindowShortcuts(window);
   });

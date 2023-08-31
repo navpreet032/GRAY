@@ -2,13 +2,14 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './assets/index.css'
 import App from './App'
-import { TerminalContextProvider } from "react-terminal";
+import { ContextProvider } from './ContextAPi/context_main';
 
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <TerminalContextProvider>
+  <ContextProvider>
   <React.StrictMode>
     <App />
   </React.StrictMode>
-  </TerminalContextProvider>
+  </ContextProvider>
+  
 )

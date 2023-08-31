@@ -1,0 +1,33 @@
+.left{
+    margin-left: 6px;
+    margin-top: 6px;
+    position: absolute;
+    width: 25vw;
+    height: 4vh;
+    background-color: #1c2128;
+    left: 0;
+    justify-content: space-between;
+    display: flex;
+}
+.menu{
+    position: absolute;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1c2128;
+    justify-items: center;
+    flex-wrap: wrap;
+    width: 100vw;
+    height: 40px;
+    z-index: 9999;
+    -webkit-user-select: none;
+  -webkit-app-region: drag;
+  position: fixed;
+
+  img{
+    width: 24px;
+    height: 24px;
+  }
+
+}

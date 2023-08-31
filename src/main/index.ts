@@ -1,4 +1,4 @@
-import { app, shell, BrowserWindow } from 'electron'
+import { app, shell, BrowserWindow, ipcMain, dialog } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
@@ -14,7 +14,10 @@ function createWindow(): void {
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
-      sandbox: false
+      sandbox: false,
+      nodeIntegration: true,
+      contextIsolation: true
+      
     }
   })
 
@@ -42,6 +45,20 @@ function createWindow(): void {
 app.whenReady().then(() => {
   // Set app user model id for windows
   electronApp.setAppUserModelId('com.electron')
+
+  // api to open open select folder dialog box
+  ipcMain.handle('open-folder-dialog', async () => {
+    const res = await dialog.showOpenDialog({
+      properties: ['openDirectory']
+    });
+    if (res.canceled) {
+      return null;
+    } else {
+      console.warn(res.filePaths[0]);
+      return res.filePaths[0];
+    }
+  });
+  
 
   // Default open or close DevTools by F12 in development
   // and ignore CommandOrControl + R in production.
