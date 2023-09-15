@@ -3,6 +3,8 @@ import "./master.css"
 import { useEffect, useLayoutEffect, useRef, useState } from "react"
 import FileExplorer from "../components/fileExplorer/fileExplorer";
 import Menubar from "../components/menubar/menubar";
+import Terminal from "../components/terminal/terminal";
+import StatusBar from "../components/statusBar/statusBar";
 
 
 const Master = () => {
@@ -52,12 +54,13 @@ const Master = () => {
 
                     </div>
                     <div className='terminal'>
-                        <p>Terminal</p>
+                        <Terminal/>
+                        
                     </div>
                 </div>
 
                 <div className='statusbar'> 
-                    <p>statusbar</p>
+                    <StatusBar/>
                 </div>
             </div>
         </div>

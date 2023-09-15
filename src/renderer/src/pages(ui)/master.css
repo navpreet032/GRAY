@@ -23,7 +23,7 @@
     position: fixed;
 }
 .explorer{
-    height: 89.6vh;
+    height: 91.2vh;
     width: 40vh;
     border: 1px solid #585e65;
     background-color: #1c2128;
@@ -44,32 +44,32 @@
     display: flex;
 }
 .terminal{
-    position: absolute;
+  position: absolute;
     background-color: #1c2128;
     border: solid #585e65;
-    border-width: 1px 1px 1px 0px ;
+    border-width: 1px 1px 1px 0px;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    bottom: 40px;
+    justify-content: flex-start;
+    bottom: 26px;
     width: 100%;
     height: 20%;
+    align-items: flex-start;
+    flex-direction: column;
+    overflow-y: auto;
+   
 }
 .statusbar{
     position: absolute;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    display: flex;
     width: 100vw;
     border: 1px solid #585e65;
     background-color: #22272e;
+    height: 28px;
     bottom: 0%;
 }
 .editor{
   width: 100%;
   display: flex;
-  height: 75%;
+  height: 77%;
 }
 
  /* width */

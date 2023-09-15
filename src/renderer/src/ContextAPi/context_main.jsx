@@ -7,7 +7,11 @@ export const ContextProvider = ({ children }) => {
   const [rootDir, setRootDir] = useState('');
   // current selected file in file explorer
   const [selectedFile, setSelectedFile, ] = useState('');
-  const [IS_save_clicked, setIS_save_clicked] = useState(false)
+  // to check if save button is clicked or not
+  const [IS_save_clicked, setIS_save_clicked] = useState(false);
+
+  const [CMD_data , setCMDdata] = useState('grayByteStudio')
+  
 
   const SET_rootDir = (dir) => {
     setRootDir(dir);
@@ -19,7 +23,7 @@ export const ContextProvider = ({ children }) => {
     setIS_save_clicked(bool)
   }
   
-  const value = { rootDir, SET_rootDir, selectedFile, SET_selectedFile, IS_save_clicked, SET_is_save_clicked }; // Create a value object
+  const value = { rootDir, SET_rootDir, selectedFile, SET_selectedFile, IS_save_clicked, SET_is_save_clicked, CMD_data, setCMDdata }; // Create a value object
 
   return (
     <Data_pipe.Provider value={value}>

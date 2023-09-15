@@ -1,0 +1,39 @@
+.statusbarMain{
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+}
+.statusbarright{
+    width: 30%;
+    font-size: small ;
+    color: #808e9d;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+}
+.statusbarleft{
+    width: 50%;
+    
+}
+.statusbarright select{
+    background-color: #292826;
+    color: white;
+    border: 2px solid #dd1e61b7;
+    border-radius: 4px;
+    font-weight: medium;
+    appearance: none;
+    outline: none;
+    cursor: pointer;
+    align-items: center;
+    height: 1.4rem;
+    width: 4rem;
+    transition: all 0.2s ease-in-out;
+}
+.statusbarright select:hover {
+    width: 4.1rem;
+    
+}

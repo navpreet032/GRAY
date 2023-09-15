@@ -17,6 +17,7 @@ export default function Editor({height, width}) {
   // ref to preserve the previous code content
   const refFileData = useRef('')
   const [fileData, setFileData] = useState(refFileData.current)
+ 
 
 
   // function to read the file at given 'path'
@@ -26,6 +27,8 @@ export default function Editor({height, width}) {
     // using ref to update the fileData as it changes on reRender
     refFileData.current = data;
   }
+  
+  
 
   const save_file = async (data, path)=>{
     console.log("PATH ", data);
@@ -37,13 +40,16 @@ export default function Editor({height, width}) {
     read_file_from_path(selectedFile);
   },[selectedFile])
 
+  // to save the file when save button is clicked
   useEffect(()=>{ 
     save_file(fileData, selectedFile)
     SET_is_save_clicked(false)
   },[IS_save_clicked])
   
+  // to update the editor's value
   const onChange = React.useCallback((value, viewUpdate) => {
     setFileData(value)
+    
   }, []);
 
   return (

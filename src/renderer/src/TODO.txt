@@ -1,18 +1,30 @@
+#ISSUE 
+Compile, Burn only works when your .c file is in root folder. but if you open root folder and select another folder the it dont works
+
 #ToDo
-↠ SETUP the compileCode.js file to compile the code.
+↠ ✔ SETUP the compileCode.js file to compile the code.
 ↠ Integrate the CMD into GrayByteStudio
-↠ SYNC the fileExplorer
-↠ ADD React Complex Tree
+↠ ✔ SYNC the fileExplorer
+↠ Create a JSON file which contains all the setting and path of curr Project
+⇰ Identify on Which port arduino is connected
+⇰ Add wireing library 
+⇰ How to add path of AVRgcc , AVRDude, wiring library
+⇰ make dropdown for budrate, port, setting
 
+↠ ✔ create a function which makea a folder in temp which have all the temp files of curent project
+    foldername = ProjectName + tmp ↴
+         C:\Users\Acer\Desktop\Newfolder\Blink
+                                        ↿......↾ + temp = Blinktemp
+    temp dir = C:\Windows\Temp
 
-ADD CODE compilation Capability:
+✔ ADD CODE compilation Capability:
     STEP: 1 Compile the  .C  to .O file
     STEP 2 .O file to .elf
     STEP 3 .elf to .hex
     STEP 4 show outout info to user
     STEP 5 Send .hex to
 
-if compile 
+✔ if compile 
     |
     | 
     ⇓
