@@ -1,9 +1,10 @@
 /**
  * Themes : https://uiwjs.github.io/react-codemirror/#/theme/data/sublime
  * Examples : https://codemirror.net/examples/
+ * ? Monocco editor : https://github.com/microsoft/monaco-editor/issues/2285
 */
 // use path send via context and Read that file and conv the data to string and use it
-import React, { useEffect, useRef, useState } from "react";
+import React, {  useCallback, useEffect, useRef, useState } from "react";
 import CodeMirror from "@uiw/react-codemirror";
 import { cpp } from "@codemirror/lang-cpp";
 import { tags as t } from '@lezer/highlight';
@@ -30,10 +31,10 @@ export default function Editor({height, width}) {
   
   
 
-  const save_file = async (data, path)=>{
+  const save_file = useCallback(async (data, path)=>{
     console.log("PATH ", data);
     await window.electronAPI.SAVE_file(data, path);
-  }
+  },[IS_save_clicked])
  
   // read the contents of selected file (update when the selected file changes)
   useEffect(()=>{

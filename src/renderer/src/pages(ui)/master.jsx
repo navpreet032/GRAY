@@ -12,14 +12,15 @@ const Master = () => {
 
     const [width, setWidth] = useState(20);
     const [height, setHeight] = useState(100);
+    
 
     const handleResize = () => {
         setWidth(ref.current.offsetWidth);
         setHeight(ref.current.clientHeight);
+        console.log("MASTER")
     }
     
-
-
+    
 
     useEffect(() => {
         // Initial setup

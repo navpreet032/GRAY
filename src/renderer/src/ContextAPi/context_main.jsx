@@ -9,8 +9,10 @@ export const ContextProvider = ({ children }) => {
   const [selectedFile, setSelectedFile, ] = useState('');
   // to check if save button is clicked or not
   const [IS_save_clicked, setIS_save_clicked] = useState(false);
-
-  const [CMD_data , setCMDdata] = useState('grayByteStudio')
+  // to transport the Data to Terminal
+  const [CMD_data , setCMDdata] = useState('grayByteStudio');
+  // to get Curret selected Board type ex: Arduino nano
+  const [CurrentSelectedBoard, setCurrentSelectedBoard] = useState('none');
   
 
   const SET_rootDir = (dir) => {
@@ -22,8 +24,12 @@ export const ContextProvider = ({ children }) => {
   const SET_is_save_clicked=(bool)=>{
     setIS_save_clicked(bool)
   }
+
+  const SET_currentSelectedBoard=(board)=>{
+    setCurrentSelectedBoard(board);
+  }
   
-  const value = { rootDir, SET_rootDir, selectedFile, SET_selectedFile, IS_save_clicked, SET_is_save_clicked, CMD_data, setCMDdata }; // Create a value object
+  const value = { rootDir, SET_rootDir, selectedFile, SET_selectedFile, IS_save_clicked, SET_is_save_clicked, CMD_data, setCMDdata,CurrentSelectedBoard, SET_currentSelectedBoard }; // Create a value object
 
   return (
     <Data_pipe.Provider value={value}>

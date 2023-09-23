@@ -33,6 +33,12 @@ function createWindow() {
 }
 electron.app.whenReady().then(() => {
   utils.electronApp.setAppUserModelId("com.electron");
+  electron.ipcMain.on("usb-connect", (event, device) => {
+    console.log("USB device connected:", device);
+  });
+  electron.ipcMain.on("usb-disconnect", (event, device) => {
+    console.log("USB device disconnected:", device);
+  });
   electron.ipcMain.handle("open-folder-dialog", async () => {
     const res = await electron.dialog.showOpenDialog({
       properties: ["openDirectory"]

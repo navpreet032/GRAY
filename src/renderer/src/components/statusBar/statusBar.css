@@ -17,7 +17,7 @@
 }
 .statusbarleft{
     width: 50%;
-    
+    background-color: blue;
 }
 .statusbarright select{
     background-color: #292826;
@@ -30,10 +30,18 @@
     cursor: pointer;
     align-items: center;
     height: 1.4rem;
-    width: 4rem;
+    max-width: 8rem;
     transition: all 0.2s ease-in-out;
+    
 }
 .statusbarright select:hover {
-    width: 4.1rem;
+    border: 2px solid #dd1e61;
+    
+}
+
+.statusbarright  option{
+    color: #dd1e61;
+    background-color: #2d333b;
+    margin-bottom: 10px;
     
 }

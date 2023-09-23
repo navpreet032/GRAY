@@ -25,6 +25,10 @@ function createWindow(): void {
     mainWindow.show()
   })
 
+
+  
+
+  
   mainWindow.webContents.setWindowOpenHandler((details) => {
     shell.openExternal(details.url)
     return { action: 'deny' }
@@ -39,6 +43,9 @@ function createWindow(): void {
   }
 }
 
+
+
+
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
@@ -46,6 +53,13 @@ app.whenReady().then(() => {
   // Set app user model id for windows
   electronApp.setAppUserModelId('com.electron')
 
+  ipcMain.on('usb-connect',(event, device)=>{
+    console.log('USB device connected:', device);
+  })
+
+  ipcMain.on('usb-disconnect',(event, device)=>{
+    console.log('USB device disconnected:', device);
+  })
   // api to open open select folder dialog box
   ipcMain.handle('open-folder-dialog', async () => {
     const res = await dialog.showOpenDialog({

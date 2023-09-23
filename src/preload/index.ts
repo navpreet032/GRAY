@@ -3,14 +3,18 @@ import { electronAPI } from '@electron-toolkit/preload'
 import { mkdir, readFile, unlink, writeFile } from 'fs/promises'
 import { getFileTree, watchFileChanges } from '../renderer/src/utils/files_utils/get_Files_and_Folders'
 import {make_temp_dir} from '../renderer/src/utils/files_utils/handle_tempDir'
-import { compileCode, burnCode } from '../renderer/src/Code_processor/compileCode'
+import { compileCode, burnCode, ReadDataFromBoardJSON } from '../renderer/src/Code_processor/compileCode'
 import { existsSync } from 'fs'
 import  { SerialPort } from 'serialport'
+
+
+
 // import {CMD} from '../renderer/src/utils/Integrate_CMD'
 // Custom APIs for renderer
 
 const api = {
   readConfig: () => readFile('/path/to/config.json', { encoding: 'utf-8' })
+  
 }
 contextBridge.exposeInMainWorld('electron', api)
 // API for AVR Related work
@@ -48,7 +52,7 @@ contextBridge.exposeInMainWorld('AVR_Api', {
     } catch (err) {
       console.error('Error listing serial ports:', err);
     }
-  }
+  },
 
 })
 
@@ -114,6 +118,10 @@ contextBridge.exposeInMainWorld('electronAPI', {
     } catch (error) {
       console.log("CAN'T CREATE FOLDER : ", error)
     }
+  },
+  // Runs when value is changed in Boards Dropdown
+  On_BoardChanges:async(board)=>{
+    await ReadDataFromBoardJSON(board);
   }
 
 })

@@ -3,7 +3,8 @@ import { useDataPipeline } from '../../ContextAPi/context_main';
 import './menubar.css'
 import { DiCode, DiCodeigniter } from 'react-icons/di';
 import { AiFillSave } from 'react-icons/ai';
-
+import { Dropdown } from 'react-nested-dropdown';
+import 'react-nested-dropdown/dist/styles.css';
 
 
 export default function Menubar() {
@@ -13,6 +14,21 @@ export default function Menubar() {
     const fileType = selectedFile.substring(selectedFile.indexOf('.'), selectedFile.length);
     const fileName = selectedFile.substring(Math.max(selectedFile.lastIndexOf('\\'), selectedFile.lastIndexOf('/')) + 1, selectedFile.indexOf('.'));
 
+    const items = [
+        {
+          label: 'Boards',
+          items:[
+            {
+                label:'Nano',
+                onSelect: () => console.log('Nano'),
+            },
+            {
+                label:'AVR',
+                onSelect:()=>console.log("Avr")
+            },
+          ],
+        },
+      ];
 
 
    
@@ -81,7 +97,13 @@ export default function Menubar() {
                 <p className='options' >View</p>
                 <p className='options' >Edit</p>
                 <p className='options'>File</p>
-                <p className='options'>Utils</p>
+                <Dropdown items={items} containerWidth="100px" >
+      {({ isOpen, onClick }) => (
+        <p type="button" onClick={onClick} className='options' >
+          Utils
+        </p>
+      )}
+    </Dropdown>
                 
 
                 <span className='options' onClick={handleCompile}><DiCode size={24} /></span>

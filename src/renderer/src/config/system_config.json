@@ -1,0 +1,12 @@
+
+[
+    {
+        "AVR_paths_config":{
+            "compiler":"D:\\Arduino\\hardware\\tools\\avr/bin/avr-gcc",
+            "avrDude":"D:\\Arduino\\hardware\\tools\\avr/bin/avrdude",
+            "avrdudeConf":"D:\\Arduino\\hardware\\tools\\avr/etc/avrdude.conf",
+            "avrTools":""
+
+        }
+    }
+]

@@ -2223,11 +2223,22 @@ const make_temp_dir = (rootDir) => {
     throw error;
   }
 };
+const AVRconfig = [
+  {
+    AVR_paths_config: {
+      compiler: "D:\\Arduino\\hardware\\tools\\avr/bin/avr-gcc",
+      avrDude: "D:\\Arduino\\hardware\\tools\\avr/bin/avrdude",
+      avrdudeConf: "D:\\Arduino\\hardware\\tools\\avr/etc/avrdude.conf",
+      avrTools: ""
+    }
+  }
+];
 const util = window.require("util");
 const exec = util.promisify(window.require("child_process").exec);
 async function compileCode(InputFile, OutputFile) {
   try {
-    const { stdout, stderr } = await exec(`"D:\\Arduino\\hardware\\tools\\avr/bin/avr-gcc" -c -g -Os -w -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -MMD -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10813 -DARDUINO_AVR_NANO -DARDUINO_ARCH_AVR -ID:\\Arduino\\hardware\\arduino\\avr\\cores\\arduino -ID:\\Arduino\\hardware\\arduino\\avr\\variants\\eightanaloginputs "${InputFile}" -o "${OutputFile}.o"`);
+    const avr_gccPath = AVRconfig[0].AVR_paths_config.compiler;
+    const { stdout, stderr } = await exec(`"${avr_gccPath}" -c -g -Os -w -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -MMD -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10813 -DARDUINO_AVR_NANO -DARDUINO_ARCH_AVR -ID:\\Arduino\\hardware\\arduino\\avr\\cores\\arduino -ID:\\Arduino\\hardware\\arduino\\avr\\variants\\eightanaloginputs "${InputFile}" -o "${OutputFile}.o"`);
     console.log("Compilation success:", stdout);
     return stdout;
   } catch (error) {
@@ -2236,12 +2247,12 @@ async function compileCode(InputFile, OutputFile) {
   }
 }
 async function burnCode(Filename) {
-  console.log("Dude ", Filename);
+  const { avrDude, avrdudeConf } = AVRconfig[0].AVR_paths_config;
   try {
     await exec(`"D:\\Arduino\\hardware\\tools\\avr/bin/avr-gcc" -g -mmcu=atmega32 -o "${Filename}.elf" "${Filename}.o"`);
     await exec(`"D:\\Arduino\\hardware\\tools\\avr/bin/avr-objcopy" -j .text -j .data -O ihex "${Filename}.elf" "${Filename}.hex"`);
     await exec(`"D:\\Arduino\\hardware\\tools\\avr/bin/avr-size" --format=avr --mcu=atmega32 "${Filename}.elf"`);
-    const { stdout, stderr } = await exec(`D:\\Arduino\\hardware\\tools\\avr/bin/avrdude -CD:\\Arduino\\hardware\\tools\\avr/etc/avrdude.conf -v -patmega328p -carduino -PCOM6 -b57600 -D -Uflash:w:"${Filename}.hex":i`);
+    const { stdout, stderr } = await exec(`${avrDude} -C${avrdudeConf} -v -patmega328p -carduino -PCOM6 -b57600 -D -Uflash:w:"${Filename}.hex":i`);
     console.log(JSON.stringify(stdout, null, 2));
     console.log(JSON.stringify(stderr, null, 2));
     return { stdout, stderr };
