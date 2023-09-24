@@ -4,15 +4,17 @@ import './menubar.css'
 import { DiCode, DiCodeigniter } from 'react-icons/di';
 import { AiFillSave } from 'react-icons/ai';
 import { Dropdown } from 'react-nested-dropdown';
+import BoardsData from '../../config/boards.json';
 import 'react-nested-dropdown/dist/styles.css';
 
 
 export default function Menubar() {
-    const { selectedFile, rootDir, IS_save_clicked, SET_is_save_clicked, setCMDdata } = useDataPipeline();
-    
+    const { selectedFile, rootDir, IS_save_clicked, SET_is_save_clicked, setCMDdata, CurrentSelectedBoard } = useDataPipeline();
     const TEMP_DIR = useRef('');
     const fileType = selectedFile.substring(selectedFile.indexOf('.'), selectedFile.length);
     const fileName = selectedFile.substring(Math.max(selectedFile.lastIndexOf('\\'), selectedFile.lastIndexOf('/')) + 1, selectedFile.indexOf('.'));
+    const BoardsMenu = [];
+   
 
     const items = [
         {
@@ -28,10 +30,61 @@ export default function Menubar() {
             },
           ],
         },
+        
+        
+        
       ];
 
 
-   
+    useEffect(()=>{
+        
+        if(CurrentSelectedBoard.length != 0){
+            // console.log(BoardsData[CurrentSelectedBoard])
+        
+        if (BoardsData[CurrentSelectedBoard].hasOwnProperty("menu")){
+            const data = BoardsData[CurrentSelectedBoard].menu;
+            
+            for(const chip in data){
+                for( const cpu in data[chip]){
+                    BoardsMenu.push(cpu)
+                }
+               
+            } 
+            // console.log("BoardsMenu " ,BoardsMenu)
+        }
+    }
+    generateProcessorSubMenu()
+    },[CurrentSelectedBoard])
+
+    
+    const generateProcessorSubMenu = () => {
+        const processorSubMenu = {
+            label: 'Processor',
+            items: [],
+          };
+        BoardsMenu.forEach((processor) => {
+          const processorItem = {
+            label: processor,
+            //? set the processor in "compileCode.js"
+            onSelect: () => window.AVR_Api.On_ProcessorChanges(processor),
+          };
+        //   console.log("processor ",processor)
+          processorSubMenu.items.push(processorItem);
+        
+        });
+        
+      
+        return processorSubMenu;
+      };
+      useEffect(()=>{
+        if (BoardsMenu.length > 0) {
+        
+            items.push(generateProcessorSubMenu());
+            // console.log("SUB", generateProcessorSubMenu())
+            
+          }
+      },[BoardsMenu])
+      
 
     // context Api to know wether Save button is pressed or not
     const handleSave = () => {

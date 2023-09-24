@@ -1,8 +1,9 @@
 import './statusBar.css'
 import { SlRefresh } from 'react-icons/sl';
 import { MdUsbOff, MdUsb } from 'react-icons/md';
-import BoardsData from '../../config/boards.json'
-import { useCallback, useEffect, useMemo, useState,useRef } from 'react';
+import BoardsData from '../../config/boards.json';
+import {  useEffect, useMemo, useState,useRef } from 'react';
+import { useDataPipeline } from '../../ContextAPi/context_main';
 
 export default function StatusBar() {
     /**
@@ -12,6 +13,7 @@ export default function StatusBar() {
     
     const [selectedPort, setSelectedPort]=useState('')
     const [selectedBoard, setSelectedBoard] = useState('')
+    const {SET_currentSelectedBoard} = useDataPipeline()
     const boards = useRef([])
     const [devices ,setDevices]= useState([])
     
@@ -45,6 +47,11 @@ export default function StatusBar() {
       useEffect(()=>{
         ReadBoardsData();
       },[BoardsData])
+// * sets the current selected board
+      useEffect(()=>{
+        SET_currentSelectedBoard(selectedBoard)
+        
+      },[selectedBoard])
 
     useEffect(()=>{
        const int = setInterval(()=>{
@@ -59,10 +66,11 @@ export default function StatusBar() {
 
 
     const handleOptionChange=(event)=>{
-       setSelectedPort(event.target.value)
+       setSelectedPort(event.target.value);
     }
-    const handleBoardChange=(event)=>{
-       setSelectedBoard(event.target.value)
+    const handleBoardChange=async(event)=>{
+      setSelectedBoard(event.target.value);
+      await window.AVR_Api.On_BoardChanges(event.target.value);
     }
 
     return (

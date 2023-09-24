@@ -1,5 +1,5 @@
 {
-        "yun": {
+        "Arduino Yún": {
           "name": "Arduino Yún",
           "upload": {
             "via_ssh": true,
@@ -71,7 +71,7 @@
           }
         },
 
-        "uno": {
+        "Arduino UNO": {
             "name": "Arduino UNO",
             "vid": {
               "0": "0x2341",
@@ -132,7 +132,7 @@
             "build_variant": "standard"
           },
 
-          "unomini": {
+          "Arduino UNO Mini": {
             "name": "Arduino UNO Mini",
             "vid": {
               "0": "0x2341"
@@ -170,7 +170,7 @@
             "build_core": "arduino",
             "build_variant": "standard"
           },
-          "diecimila": {
+          "Arduino Duemilanove or Diecimila": {
             "name": "Arduino Duemilanove or Diecimila",
             "upload_port": {
               "0": {
@@ -222,7 +222,7 @@
               }
             }
           },
-          "nano": {
+          "Arduino Nano": {
             "name": "Arduino Nano",
             "upload_port": {
               "0": {
@@ -291,7 +291,7 @@
               }
             }
           },
-          "mega": {
+          "Arduino Mega or Mega 2560": {
             "name": "Arduino Mega or Mega 2560",
             "vid": {
               "0": "0x2341",
@@ -387,7 +387,7 @@
               }
             }
           },
-          "megaADK": {
+          "Arduino Mega ADK": {
             "name": "Arduino Mega ADK",
             "vid": {
               "0": "0x2341",
@@ -448,7 +448,7 @@
             "build_variant": "mega"
           },
           
-            "leonardo": {
+            "Arduino Leonardo": {
               "name": "Arduino Leonardo",
               "vid": {
                 "0": "0x2341",
@@ -511,7 +511,7 @@
               "build_variant": "leonardo",
               "build_extra_flags": "{build.usb_flags}"
             },
-            "leonardoeth": {
+            "Arduino Leonardo ETH": {
               "name": "Arduino Leonardo ETH",
               "vid": {
                 "0": "0x2a03",
@@ -562,7 +562,7 @@
               "build_variant": "leonardo",
               "build_extra_flags": "{build.usb_flags}"
             },
-            "micro": {
+            "Arduino Micro": {
               "name": "Arduino Micro",
               "vid": {
                 "0": "0x2341",
@@ -638,7 +638,7 @@
               "build_extra_flags": "{build.usb_flags}"
             },
             
-                "esplora": {
+                "Arduino Esplora": {
                   "name": "Arduino Esplora",
                   "vid": {
                     "0": "0x2341",
@@ -701,7 +701,7 @@
                   "build_variant": "leonardo",
                   "build_extra_flags": "{build.usb_flags}"
                 },
-                "mini": {
+                "Arduino Mini": {
                   "name": "Arduino Mini",
                   "upload_port": {
                     "0": {
@@ -754,7 +754,7 @@
                     }
                   }
                 },
-                "ethernet": {
+                "Arduino Ethernet": {
                   "name": "Arduino Ethernet",
                   "upload_port": {
                     "0": {
@@ -782,7 +782,7 @@
                   "build_board": "AVR_ETHERNET",
                   "build_core": "arduino"
                 },
-                "fio": {
+                "Arduino Fio": {
                   "name": "Arduino Fio",
                   "upload_port": {
                     "0": {
@@ -811,7 +811,7 @@
                   "build_variant": "eightanaloginputs"
                 }
               ,
-              "bt": {
+              "Arduino BT": {
                 "name": "Arduino BT",
                 "upload_port": {
                   "0": {
@@ -864,7 +864,7 @@
                   }
                 }
               },
-              "LilyPadUSB": {
+              "LilyPad Arduino USB": {
                 "name": "LilyPad Arduino USB",
                 "vid": {
                   "0": "0x1B4F",
@@ -915,7 +915,7 @@
                 "build_variant": "leonardo",
                 "build_extra_flags": "{build.usb_flags}"
               },
-              "lilypad": {
+              "LilyPad Arduino": {
                 "name": "LilyPad Arduino",
                 "upload_port": {
                   "0": {
@@ -969,7 +969,7 @@
                   }
                 }
               },
-              "pro": {
+              "Arduino Pro or Pro Mini": {
                 "name": "Arduino Pro or Pro Mini",
                 "upload_port": {
                   "0": {
@@ -1058,7 +1058,7 @@
                   }
                 }
               },
-              "atmegang": {
+              "Arduino NG or older": {
                 "name": "Arduino NG or older",
                 "upload_port": {
                   "0": {
@@ -1111,7 +1111,7 @@
                   }
                 }
               },
-              "robotControl": {
+              "Arduino Robot Control": {
                 "name": "Arduino Robot Control",
                 "vid": {
                   "0": "0x2341",
@@ -1174,7 +1174,7 @@
                 "build_variant": "robot_control",
                 "build_extra_flags": "{build.usb_flags}"
               },
-              "robotMotor": {
+              "Arduino Robot Motor": {
                 "name": "Arduino Robot Motor",
                 "vid": {
                   "0": "0x2341",
@@ -1237,7 +1237,7 @@
                 "build_variant": "robot_motor",
                 "build_extra_flags": "{build.usb_flags}"
               },
-              "gemma": {
+              "Arduino Gemma": {
                 "vid": {
                   "0": "0x2341"
                 },
@@ -1272,7 +1272,7 @@
                 "upload_tool.network": "arduino_ota",
                 "upload_maximum_size": 5310
               },
-              "circuitplay32u4cat": {
+              "Adafruit Circuit Playground": {
                 "name": "Adafruit Circuit Playground",
                 "bootloader": {
                   "low_fuses": "0xff",
@@ -1323,7 +1323,7 @@
                   }
                 }
               },
-              "yunmini": {
+              "Arduino Yún Mini": {
                 "name": "Arduino Yún Mini",
                 "upload": {
                   "via_ssh": true
@@ -1379,7 +1379,7 @@
                   "extra_flags": "{build.usb_flags}"
                 }
               },
-              "chiwawa": {
+              "Arduino Industrial 101": {
                 "name": "Arduino Industrial 101",
                 "upload": {
                   "via_ssh": true
@@ -1435,7 +1435,7 @@
                   "extra_flags": "{build.usb_flags}"
                 }
               },
-              "one": {
+              "Linino One": {
                 "name": "Linino One",
                 "upload": {
                   "via_ssh": true
@@ -1491,7 +1491,7 @@
                   "extra_flags": "{build.usb_flags}"
                 }
               },
-              "unowifi": {
+              "Arduino UNO WiFi": {
                 "name": "Arduino UNO WiFi",
                 "vid": {
                   "0": "0x2A03"

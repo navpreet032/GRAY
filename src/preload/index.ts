@@ -3,7 +3,7 @@ import { electronAPI } from '@electron-toolkit/preload'
 import { mkdir, readFile, unlink, writeFile } from 'fs/promises'
 import { getFileTree, watchFileChanges } from '../renderer/src/utils/files_utils/get_Files_and_Folders'
 import {make_temp_dir} from '../renderer/src/utils/files_utils/handle_tempDir'
-import { compileCode, burnCode, ReadDataFromBoardJSON } from '../renderer/src/Code_processor/compileCode'
+import { compileCode, burnCode, ReadDataFromBoardJSON, setProcessor } from '../renderer/src/Code_processor/compileCode'
 import { existsSync } from 'fs'
 import  { SerialPort } from 'serialport'
 
@@ -53,6 +53,19 @@ contextBridge.exposeInMainWorld('AVR_Api', {
       console.error('Error listing serial ports:', err);
     }
   },
+  // Runs when value is changed in Boards Dropdown
+  On_BoardChanges:async(board)=>{
+    try {
+      await ReadDataFromBoardJSON(board);
+      return null;
+    } catch (error) {
+      console.log(error)
+    }
+  },
+  // sets the processor value to current selected value 
+  On_ProcessorChanges:(processor)=>{
+    setProcessor(processor)
+  }
 
 })
 
@@ -119,10 +132,7 @@ contextBridge.exposeInMainWorld('electronAPI', {
       console.log("CAN'T CREATE FOLDER : ", error)
     }
   },
-  // Runs when value is changed in Boards Dropdown
-  On_BoardChanges:async(board)=>{
-    await ReadDataFromBoardJSON(board);
-  }
+  
 
 })
 

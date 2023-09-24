@@ -12,7 +12,7 @@ export const ContextProvider = ({ children }) => {
   // to transport the Data to Terminal
   const [CMD_data , setCMDdata] = useState('grayByteStudio');
   // to get Curret selected Board type ex: Arduino nano
-  const [CurrentSelectedBoard, setCurrentSelectedBoard] = useState('none');
+  const [CurrentSelectedBoard, setCurrentSelectedBoard] = useState('');
   
 
   const SET_rootDir = (dir) => {
@@ -29,7 +29,7 @@ export const ContextProvider = ({ children }) => {
     setCurrentSelectedBoard(board);
   }
   
-  const value = { rootDir, SET_rootDir, selectedFile, SET_selectedFile, IS_save_clicked, SET_is_save_clicked, CMD_data, setCMDdata,CurrentSelectedBoard, SET_currentSelectedBoard }; // Create a value object
+  const value = { rootDir, SET_rootDir, selectedFile, SET_selectedFile, IS_save_clicked, SET_is_save_clicked, CMD_data, setCMDdata,CurrentSelectedBoard, SET_currentSelectedBoard}; // Create a value object
 
   return (
     <Data_pipe.Provider value={value}>
