@@ -40,7 +40,7 @@ export default function StatusBar() {
               }
             }
           }
-          console.log("Rendered");
+          
         };
       }, [ BoardsData]);
 

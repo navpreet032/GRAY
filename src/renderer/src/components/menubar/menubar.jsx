@@ -15,7 +15,7 @@ export default function Menubar() {
     const fileName = selectedFile.substring(Math.max(selectedFile.lastIndexOf('\\'), selectedFile.lastIndexOf('/')) + 1, selectedFile.indexOf('.'));
     const BoardsMenu = [];
    
-
+    //? Array for nested dropdown "Utils"
     const items = [
         {
           label: 'Boards',
@@ -36,8 +36,8 @@ export default function Menubar() {
       ];
 
 
+      //? runs when the there is change in current selected Board and also calls generateProcessorSubMenu() to check if current Board have a "menu" object   
     useEffect(()=>{
-        
         if(CurrentSelectedBoard.length != 0){
             // console.log(BoardsData[CurrentSelectedBoard])
         
@@ -56,7 +56,7 @@ export default function Menubar() {
     generateProcessorSubMenu()
     },[CurrentSelectedBoard])
 
-    
+    //? makes a submenu for processors of current selected Board
     const generateProcessorSubMenu = () => {
         const processorSubMenu = {
             label: 'Processor',
@@ -72,16 +72,14 @@ export default function Menubar() {
           processorSubMenu.items.push(processorItem);
         
         });
-        
-      
         return processorSubMenu;
       };
+
+      //? runs when if (selected Board have "menu" and return a new array of processors)
       useEffect(()=>{
         if (BoardsMenu.length > 0) {
-        
             items.push(generateProcessorSubMenu());
             // console.log("SUB", generateProcessorSubMenu())
-            
           }
       },[BoardsMenu])
       

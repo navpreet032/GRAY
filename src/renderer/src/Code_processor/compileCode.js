@@ -1,4 +1,3 @@
-// TODO ADD BOARD NAMES and there settings TO JSON FILE AND CONNECT THEM TO MENU BAR
 // !IMP https://github.com/arduino/ArduinoCore-avr/blob/master/boards.txt
 // ?DOCS https://arduino.github.io/arduino-cli/0.34/platform-specification/
 // ?PROGRESS PORTAL https://github.com/users/navpreet032/projects/1/views/2
@@ -15,17 +14,20 @@ import Boards from '../config/boards.json'
 const util = window.require('util');
 const exec = util.promisify(window.require('child_process').exec);
 let mcu, f_cpu, buildBoard ,processor=null ;
+
 export function setProcessor(chip){processor = chip;console.log("CHIP ", processor)}
+
 export async function ReadDataFromBoardJSON (Boardname){
  mcu = (Boards[Boardname].hasOwnProperty("build") && typeof Boards[Boardname]['build'] === "object" ) ? Boards[Boardname].build.mcu : Boards[Boardname].build_mcu
  f_cpu = (Boards[Boardname].hasOwnProperty("build") && typeof Boards[Boardname]['build'] === "object" ) ? Boards[Boardname].build.f_cpu : Boards[Boardname].build_f_cpu
  buildBoard = (Boards[Boardname].hasOwnProperty("build") && typeof Boards[Boardname]['build'] === "object" ) ? Boards[Boardname].build.board : Boards[Boardname].build_board
-console.log(mcu, f_cpu, buildBoard)
+ console.log(mcu, f_cpu, buildBoard)
 }
 
 export async function compileCode(InputFile, OutputFile) {
   
   try {
+    // !if(!mcu && processor)mcu = processor
     // * Read avr-gcc path from system_config.json
     const avr_gccPath = AVRconfig[0].AVR_paths_config.compiler;
     // Run AVR-GCC command to compile code
