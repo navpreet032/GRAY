@@ -42,17 +42,33 @@ contextBridge.exposeInMainWorld('AVR_Api', {
   SCAN_ports: async()=>{
     try {
       const ports = await SerialPort.list();
-      const devices: object [] =[]
-      ports.forEach(port => {
+      const devices: object [] =[];
+      let i =0;
+      ports.forEach(async port => {
         devices.push(port)
+        console.log(devices[i]['path'])
+        const check_port = new SerialPort(devices[i]['path']);
+
+        // if the device is vitual then the device will be removed from list
+        try{
+          await check_port.open();
+          await check_port.close();
+        } catch (error) {
+          devices.pop() 
+          console.log("PORT ERROR",error)
+        }
+        i++;
         
 
       });
+      console.log(devices)
       return devices;
     } catch (err) {
       console.error('Error listing serial ports:', err);
     }
   },
+ 
+  
   // Runs when value is changed in Boards Dropdown
   On_BoardChanges:async(board)=>{
     try {
