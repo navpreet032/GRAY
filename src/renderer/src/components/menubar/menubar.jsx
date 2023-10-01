@@ -148,7 +148,7 @@ export default function Menubar() {
                 <p className='options' >View</p>
                 <p className='options' >Edit</p>
                 <p className='options'>File</p>
-                <Dropdown items={items} containerWidth="100px" >
+                <Dropdown items={items} containerWidth="150px" >
       {({ isOpen, onClick }) => (
         <p type="button" onClick={onClick} className='options' >
           Utils

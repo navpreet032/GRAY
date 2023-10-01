@@ -3064,32 +3064,34 @@ const Boards = {
     build_core: "arduino",
     build_variant: "eightanaloginputs",
     menu: {
-      "cpu.atmega328": {
-        upload: {
-          maximum_size: 28672,
-          maximum_data_size: 2048
+      cpu: {
+        atmega328: {
+          upload: {
+            maximum_size: 28672,
+            maximum_data_size: 2048
+          },
+          bootloader: {
+            high_fuses: "0xd8",
+            extended_fuses: "0xFD",
+            file: "bt/ATmegaBOOT_168_atmega328_bt.hex"
+          },
+          build: {
+            mcu: "atmega328p"
+          }
         },
-        bootloader: {
-          high_fuses: "0xd8",
-          extended_fuses: "0xFD",
-          file: "bt/ATmegaBOOT_168_atmega328_bt.hex"
-        },
-        build: {
-          mcu: "atmega328p"
-        }
-      },
-      "cpu.atmega168": {
-        upload: {
-          maximum_size: 14336,
-          maximum_data_size: 1024
-        },
-        bootloader: {
-          high_fuses: "0xdd",
-          extended_fuses: "0xF8",
-          file: "bt/ATmegaBOOT_168.hex"
-        },
-        build: {
-          mcu: "atmega168"
+        atmega168: {
+          upload: {
+            maximum_size: 14336,
+            maximum_data_size: 1024
+          },
+          bootloader: {
+            high_fuses: "0xdd",
+            extended_fuses: "0xF8",
+            file: "bt/ATmegaBOOT_168.hex"
+          },
+          build: {
+            mcu: "atmega168"
+          }
         }
       }
     }
@@ -3836,9 +3838,21 @@ electron.contextBridge.exposeInMainWorld("AVR_Api", {
     try {
       const ports = await serialport.SerialPort.list();
       const devices = [];
-      ports.forEach((port) => {
+      let i = 0;
+      ports.forEach(async (port) => {
         devices.push(port);
+        console.log(devices[i]["path"]);
+        const check_port = new serialport.SerialPort(devices[i]["path"]);
+        try {
+          await check_port.open();
+          await check_port.close();
+        } catch (error) {
+          devices.pop();
+          console.log("PORT ERROR", error);
+        }
+        i++;
       });
+      console.log(devices);
       return devices;
     } catch (err) {
       console.error("Error listing serial ports:", err);
