@@ -1,10 +1,11 @@
-import Editor from "@renderer/components/textEditor/use-codemirror"
+
 import "./master.css"
 import { useEffect, useLayoutEffect, useRef, useState } from "react"
 import FileExplorer from "../components/fileExplorer/fileExplorer";
 import Menubar from "../components/menubar/menubar";
 import Terminal from "../components/terminal/terminal";
 import StatusBar from "../components/statusBar/statusBar";
+import MonacoEditor from "../components/textEditor/MonacoEditor";
 
 
 const Master = () => {
@@ -51,8 +52,8 @@ const Master = () => {
 
                 <div className='viewport' >
                     <div className="editor" ref={ref}>
-                        <Editor height={height} width={width}  />
-
+                        {/* <Editor height={height} width={width}  /> */}
+                        <MonacoEditor height={height} width={width}/>
                     </div>
                     <div className='terminal'>
                         <Terminal/>

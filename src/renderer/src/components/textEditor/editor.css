@@ -1,0 +1,6 @@
+.monaco-list-row {
+    font-size: 14px;
+  }
+  .monaco-editor .monaco-list-rows > .monaco-list-row {
+    z-index: 9999;
+  }  

@@ -3167,36 +3167,38 @@ const Boards = {
     build_core: "arduino",
     build_variant: "standard",
     menu: {
-      "cpu.atmega328": {
-        upload: {
-          maximum_size: 30720,
-          maximum_data_size: 2048,
-          speed: 57600
+      cpu: {
+        atmega328: {
+          upload: {
+            maximum_size: 30720,
+            maximum_data_size: 2048,
+            speed: 57600
+          },
+          bootloader: {
+            low_fuses: "0xFF",
+            high_fuses: "0xDA",
+            extended_fuses: "0xFD",
+            file: "atmega/ATmegaBOOT_168_atmega328_pro_8MHz.hex"
+          },
+          build: {
+            mcu: "atmega328p"
+          }
         },
-        bootloader: {
-          low_fuses: "0xFF",
-          high_fuses: "0xDA",
-          extended_fuses: "0xFD",
-          file: "atmega/ATmegaBOOT_168_atmega328_pro_8MHz.hex"
-        },
-        build: {
-          mcu: "atmega328p"
-        }
-      },
-      "cpu.atmega168": {
-        upload: {
-          maximum_size: 14336,
-          maximum_data_size: 1024,
-          speed: 19200
-        },
-        bootloader: {
-          low_fuses: "0xe2",
-          high_fuses: "0xdd",
-          extended_fuses: "0xF8",
-          file: "lilypad/LilyPadBOOT_168.hex"
-        },
-        build: {
-          mcu: "atmega168"
+        atmega168: {
+          upload: {
+            maximum_size: 14336,
+            maximum_data_size: 1024,
+            speed: 19200
+          },
+          bootloader: {
+            low_fuses: "0xe2",
+            high_fuses: "0xdd",
+            extended_fuses: "0xF8",
+            file: "lilypad/LilyPadBOOT_168.hex"
+          },
+          build: {
+            mcu: "atmega168"
+          }
         }
       }
     }
@@ -3220,72 +3222,74 @@ const Boards = {
     build_core: "arduino",
     build_variant: "eightanaloginputs",
     menu: {
-      "cpu.16MHzatmega328": {
-        upload: {
-          maximum_size: 30720,
-          maximum_data_size: 2048,
-          speed: 57600
+      cpu: {
+        "16MHzatmega328": {
+          upload: {
+            maximum_size: 30720,
+            maximum_data_size: 2048,
+            speed: 57600
+          },
+          bootloader: {
+            low_fuses: "0xFF",
+            high_fuses: "0xDA",
+            extended_fuses: "0xFD",
+            file: "atmega/ATmegaBOOT_168_atmega328.hex"
+          },
+          build: {
+            mcu: "atmega328p",
+            f_cpu: "16000000L"
+          }
         },
-        bootloader: {
-          low_fuses: "0xFF",
-          high_fuses: "0xDA",
-          extended_fuses: "0xFD",
-          file: "atmega/ATmegaBOOT_168_atmega328.hex"
+        "8MHzatmega328": {
+          upload: {
+            maximum_size: 30720,
+            maximum_data_size: 2048,
+            speed: 57600
+          },
+          bootloader: {
+            low_fuses: "0xFF",
+            high_fuses: "0xDA",
+            extended_fuses: "0xFD",
+            file: "atmega/ATmegaBOOT_168_atmega328_pro_8MHz.hex"
+          },
+          build: {
+            mcu: "atmega328p",
+            f_cpu: "8000000L"
+          }
         },
-        build: {
-          mcu: "atmega328p",
-          f_cpu: "16000000L"
-        }
-      },
-      "cpu.8MHzatmega328": {
-        upload: {
-          maximum_size: 30720,
-          maximum_data_size: 2048,
-          speed: 57600
+        "16MHzatmega168": {
+          upload: {
+            maximum_size: 14336,
+            maximum_data_size: 1024,
+            speed: 19200
+          },
+          bootloader: {
+            low_fuses: "0xff",
+            high_fuses: "0xdd",
+            extended_fuses: "0xF8",
+            file: "atmega/ATmegaBOOT_168_diecimila.hex"
+          },
+          build: {
+            mcu: "atmega168",
+            f_cpu: "16000000L"
+          }
         },
-        bootloader: {
-          low_fuses: "0xFF",
-          high_fuses: "0xDA",
-          extended_fuses: "0xFD",
-          file: "atmega/ATmegaBOOT_168_atmega328_pro_8MHz.hex"
-        },
-        build: {
-          mcu: "atmega328p",
-          f_cpu: "8000000L"
-        }
-      },
-      "cpu.16MHzatmega168": {
-        upload: {
-          maximum_size: 14336,
-          maximum_data_size: 1024,
-          speed: 19200
-        },
-        bootloader: {
-          low_fuses: "0xff",
-          high_fuses: "0xdd",
-          extended_fuses: "0xF8",
-          file: "atmega/ATmegaBOOT_168_diecimila.hex"
-        },
-        build: {
-          mcu: "atmega168",
-          f_cpu: "16000000L"
-        }
-      },
-      "cpu.8MHzatmega168": {
-        upload: {
-          maximum_size: 14336,
-          maximum_data_size: 1024,
-          speed: 19200
-        },
-        bootloader: {
-          low_fuses: "0xc6",
-          high_fuses: "0xdd",
-          extended_fuses: "0xF8",
-          file: "atmega/ATmegaBOOT_168_pro_8MHz.hex"
-        },
-        build: {
-          mcu: "atmega168",
-          f_cpu: "8000000L"
+        "8MHzatmega168": {
+          upload: {
+            maximum_size: 14336,
+            maximum_data_size: 1024,
+            speed: 19200
+          },
+          bootloader: {
+            low_fuses: "0xc6",
+            high_fuses: "0xdd",
+            extended_fuses: "0xF8",
+            file: "atmega/ATmegaBOOT_168_pro_8MHz.hex"
+          },
+          build: {
+            mcu: "atmega168",
+            f_cpu: "8000000L"
+          }
         }
       }
     }
@@ -3312,33 +3316,35 @@ const Boards = {
     build_core: "arduino",
     build_variant: "standard",
     menu: {
-      "cpu.atmega168": {
-        upload: {
-          maximum_size: 14336,
-          maximum_data_size: 1024
+      cpu: {
+        atmega168: {
+          upload: {
+            maximum_size: 14336,
+            maximum_data_size: 1024
+          },
+          bootloader: {
+            low_fuses: "0xff",
+            high_fuses: "0xdd",
+            extended_fuses: "0xF8",
+            file: "atmega/ATmegaBOOT_168_ng.hex"
+          },
+          build: {
+            mcu: "atmega168"
+          }
         },
-        bootloader: {
-          low_fuses: "0xff",
-          high_fuses: "0xdd",
-          extended_fuses: "0xF8",
-          file: "atmega/ATmegaBOOT_168_ng.hex"
-        },
-        build: {
-          mcu: "atmega168"
-        }
-      },
-      "cpu.atmega8": {
-        upload: {
-          maximum_size: 7168,
-          maximum_data_size: 1024
-        },
-        bootloader: {
-          low_fuses: "0xdf",
-          high_fuses: "0xca",
-          file: "atmega8/ATmegaBOOT-prod-firmware-2009-11-07.hex"
-        },
-        build: {
-          mcu: "atmega8"
+        atmega8: {
+          upload: {
+            maximum_size: 7168,
+            maximum_data_size: 1024
+          },
+          bootloader: {
+            low_fuses: "0xdf",
+            high_fuses: "0xca",
+            file: "atmega8/ATmegaBOOT-prod-firmware-2009-11-07.hex"
+          },
+          build: {
+            mcu: "atmega8"
+          }
         }
       }
     }
