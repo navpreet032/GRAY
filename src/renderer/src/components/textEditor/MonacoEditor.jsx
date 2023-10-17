@@ -44,7 +44,13 @@ function MonacoEditor({ height, width }) {
 
   const save_file = useCallback(async (data, path) => {
     console.log("PATH ", data);
-    await window.electronAPI.SAVE_file(data, path);
+    try {
+      await window.electronAPI.SAVE_file(data, path);
+      //* clears data from the file buffer when the file is saved on the disk.
+      clearDataFromBuffer(filename)
+    } catch (error) {
+      
+    }
   }, [IS_save_clicked])
 
   useEffect(() => {
@@ -61,9 +67,7 @@ function MonacoEditor({ height, width }) {
   useEffect(() => {
     save_file(editorValue, selectedFile)
     const filename = selectedFile.substring(selectedFile.lastIndexOf('\\') + 1, selectedFile.length);
-    //* clears data from the file buffer when the file is saved on the disk.
-
-    clearDataFromBuffer(filename)
+    
     SET_is_save_clicked(false)
   }, [IS_save_clicked])
 
