@@ -1,18 +1,13 @@
 import Editor from '@monaco-editor/react';
 import { loader } from '@monaco-editor/react';
-
 import * as monaco from 'monaco-editor';
-// import editorWorker from 'monaco-editor/esm/vs/editor/editor.worker?worker';
-// import jsonWorker from 'monaco-editor/esm/vs/language/json/json.worker?worker';
-// import cssWorker from 'monaco-editor/esm/vs/language/css/css.worker?worker';
-// import htmlWorker from 'monaco-editor/esm/vs/language/html/html.worker?worker';
-// import tsWorker from 'monaco-editor/esm/vs/language/typescript/ts.worker?worker';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import './editor.css';
 import { useDataPipeline } from '../../ContextAPi/context_main';
+import { bufferHasFile, getDataFromBuffer, writeDataToBuffer, clearDataFromBuffer } from '../../utils/FileBuffer/FileBuffer';
 loader.config({ monaco });
 
-
+// TODO MAKE DOCUMENTATION FOR THE CHANGES MADE AND UPLOAD TO GITHUB
 
 
 function MonacoEditor({ height, width }) {
@@ -53,11 +48,22 @@ function MonacoEditor({ height, width }) {
   }, [IS_save_clicked])
 
   useEffect(() => {
-    read_file_from_path(selectedFile);
+    const filename = selectedFile.substring(selectedFile.lastIndexOf('\\') + 1, selectedFile.length);
+    const filebufferdata =  getDataFromBuffer(filename);
+   //* if buffer has the file and but doesnt contain the file data then read the file from the disk. else set the
+  //*  editor value to data from the buffer
+    if(bufferHasFile(filename) && (filebufferdata.filedata).length > 0){
+       setEditorvalue(filebufferdata.filedata);
+    }
+    else{read_file_from_path(selectedFile);}    
   }, [selectedFile])
 
   useEffect(() => {
     save_file(editorValue, selectedFile)
+    const filename = selectedFile.substring(selectedFile.lastIndexOf('\\') + 1, selectedFile.length);
+    //* clears data from the file buffer when the file is saved on the disk.
+
+    clearDataFromBuffer(filename)
     SET_is_save_clicked(false)
   }, [IS_save_clicked])
 
@@ -68,16 +74,21 @@ function MonacoEditor({ height, width }) {
 
     // Set a new debounce timer
     debounceTimer = setTimeout(() => {
-      // This code will run after a specified delay (e.g., 500 milliseconds)
+      // This code will run after a specified delay 
       setEditorvalue(value);
-      console.log(value);
-    }, 500);
+      const filename = selectedFile.substring(selectedFile.lastIndexOf('\\') + 1, selectedFile.length);
+      
+      if(bufferHasFile(filename)){
+      writeDataToBuffer(filename,value)
+    }
+      // console.log(value);
+    }, 100);
   }
   return (
     <Editor height={height} width={width}
       value={editorValue}
       theme={isThemeSet ? 'dracula' : "vs-dark"}
-      defaultLanguage="cpp" defaultValue="// some"
+      defaultLanguage="cpp" defaultValue="// Welcome to GrayByteStudio 😎"
       onChange={handleOnChange}
       onMount={handleEditorDidMount}
     />
