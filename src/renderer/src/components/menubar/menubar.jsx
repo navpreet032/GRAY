@@ -18,14 +18,14 @@ export default function Menubar() {
     //? Array for nested dropdown "Utils"
     const items = [
         {
-          label: 'Boards',
+          label: 'Tools',
           items:[
             {
-                label:'Nano',
+                label:'TEST1',
                 onSelect: () => console.log('Nano'),
             },
             {
-                label:'AVR',
+                label:'TEST2',
                 onSelect:()=>console.log("Avr")
             },
           ],

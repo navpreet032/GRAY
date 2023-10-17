@@ -17,7 +17,7 @@
 }
 .statusbarleft{
     width: 50%;
-    background-color: blue;
+    /* background-color: blue; */
 }
 .statusbarright select{
     background-color: #292826;

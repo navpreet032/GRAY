@@ -63,7 +63,7 @@ export default function FileExplorer() {
           <>
             <div className='openFolder'>
               <p>Open folder/file</p>
-              <button onClick={handleOpenFolder_file}>Open</button>
+              <button id='fileopnButt' onClick={handleOpenFolder_file}>Open</button>
             </div>
           </>
         )}

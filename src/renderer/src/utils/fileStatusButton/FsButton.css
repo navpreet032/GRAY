@@ -1,0 +1,33 @@
+.FsDiv{
+    display: flex;
+    align-items: center;
+    border-top: .5px solid #dd1e61;
+    border-left:.5px solid #dd1e61;
+    border-right:.5px solid #dd1e61;
+}
+#Fsbutton{
+    display: flex;
+    background-color: #22272e;
+    
+    border: none;
+    width:max-content;
+    padding: 4px;
+    padding-left: 8px;
+    padding-right: 8px;
+    color:#8e98a6 ;
+
+}
+#Fspan{
+    margin-left: 4px;
+    margin-right: 4px;
+    
+}
+
+#Fspan:hover{
+    color: #dd1e61;
+}
+
+.FsDiv:not(:last-child) {
+    border-right: none; /* Prevent double borders */
+  }
+ 

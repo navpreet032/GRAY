@@ -56,7 +56,7 @@ export default function StatusBar() {
     useEffect(()=>{
        const int = setInterval(()=>{
         ScanningPorts()
-       },5000)
+       },1000)
 
        return ()=>{
         clearInterval(int)

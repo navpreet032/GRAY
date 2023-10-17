@@ -1,4 +1,3 @@
-
 import "./master.css"
 import { useEffect, useLayoutEffect, useRef, useState } from "react"
 import FileExplorer from "../components/fileExplorer/fileExplorer";
@@ -6,6 +5,7 @@ import Menubar from "../components/menubar/menubar";
 import Terminal from "../components/terminal/terminal";
 import StatusBar from "../components/statusBar/statusBar";
 import MonacoEditor from "../components/textEditor/MonacoEditor";
+import OpendFiles from "../components/opendFilesBar/opendFiles";
 
 
 const Master = () => {
@@ -51,8 +51,11 @@ const Master = () => {
                 </div>
 
                 <div className='viewport' >
+                    <div className="filestatus">
+                        <OpendFiles/>
+                    </div>
                     <div className="editor" ref={ref}>
-                        {/* <Editor height={height} width={width}  /> */}
+                        
                         <MonacoEditor height={height} width={width}/>
                     </div>
                     <div className='terminal'>

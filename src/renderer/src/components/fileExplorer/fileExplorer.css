@@ -50,7 +50,8 @@ color: #8697a9;
     border: solid 1px #86e6f363;
     color: #8a909a;
 }
-button{
+
+#fileopnButt{
     background-color: #323c49;
     border: solid 1px #86e6f363;
     border-radius: 4px;
@@ -58,7 +59,7 @@ button{
     padding-left: 8px;
     padding-right: 8px;
 }
-button:hover{
+#fileopnButt:hover{
     background-color: #414e5f;
     color: #8a909a;
 }

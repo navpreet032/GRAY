@@ -30,6 +30,7 @@
     "bootstrap": "^5.3.1",
     "electron-updater": "^5.3.0",
     "monaco-themes": "^0.4.4",
+    "postcss": "^8.4.31",
     "react-bootstrap": "^2.8.0",
     "react-icons": "^4.10.1",
     "react-nested-dropdown": "^0.0.12",
